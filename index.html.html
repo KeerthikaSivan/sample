@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FortuMars Product Promotion</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+  /* Reset */
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Roboto',sans-serif;background:#f0f5f9;overflow-x:hidden;scroll-behavior:smooth;color:#333;}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:100;background:#007BFF;display:flex;justify-content:space-between;align-items:center;padding:1rem 2rem;box-shadow:0 4px 6px rgba(0,0,0,0.1);}
+  .logo{font-weight:700;font-size:1.8rem;color:#fff;}
+  nav ul{display:flex;gap:1.5rem;list-style:none;}
+  nav ul li a{color:#fff;padding:0.4rem 0.8rem;border-radius:5px;transition:0.3s;}
+  nav ul li a:hover{background:#fff;color:#007BFF;}
+
+  /* Hero */
+  .hero{position:relative;padding:8rem 2rem;text-align:center;overflow:hidden;background:linear-gradient(135deg,#ff6700,#007BFF);}
+  .hero h1{font-size:3rem;color:#fff;margin-bottom:1rem;animation:fadeIn 2s ease forwards;}
+  .hero p{font-size:1.2rem;color:#fff;margin-bottom:2rem;opacity:0;animation:fadeIn 2s ease 1s forwards;}
+  .hero button{background:#fff;color:#007BFF;padding:1rem 2rem;border:none;border-radius:50px;font-size:1.1rem;cursor:pointer;transition:0.3s;}
+  .hero button:hover{transform:scale(1.1);background:#007BFF;color:#fff;}
+
+  @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+  /* Animated background shapes */
+  .bg-shape{position:absolute;border-radius:50%;opacity:0.2;animation:floatAnim 20s linear infinite;}
+  .shape1{width:150px;height:150px;background:#ff6700;top:10%;left:5%;}
+  .shape2{width:100px;height:100px;background:#007BFF;top:30%;left:80%;}
+  .shape3{width:120px;height:120px;background:#ff6700;top:60%;left:20%;}
+  @keyframes floatAnim{0%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-50px) rotate(180deg);}100%{transform:translateY(0) rotate(360deg);}}
+
+  /* Emojis floating */
+  .emoji{position:absolute;font-size:2rem;animation:emojiFloat 10s linear infinite;}
+  .emoji1{top:20%;left:10%;animation-delay:0s;}
+  .emoji2{top:50%;left:70%;animation-delay:3s;}
+  .emoji3{top:75%;left:30%;animation-delay:5s;}
+  @keyframes emojiFloat{0%{transform:translateY(0);}50%{transform:translateY(-50px);}100%{transform:translateY(0);}}
+
+  /* Sections */
+  section{padding:5rem 2rem;position:relative;z-index:1;}
+  h2{font-size:2rem;text-align:center;color:#ff6700;margin-bottom:3rem;}
+
+  /* Features */
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;}
+  .feature-card{background:#fff;border-radius:15px;padding:2rem;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.1);transition:0.3s;}
+  .feature-card:hover{transform:scale(1.05);box-shadow:0 12px 30px rgba(0,0,0,0.2);}
+  .feature-card h3{color:#007BFF;margin-bottom:1rem;}
+  .feature-card p{color:#333;}
+
+  /* Dashboard/Charts */
+  .dashboard{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:3rem;}
+  .chart-card{background:#fff;padding:2rem;border-radius:15px;min-width:250px;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+
+  /* Counters */
+  .counters{display:flex;justify-content:space-around;flex-wrap:wrap;margin-top:3rem;}
+  .counter-card{background:#fff;padding:2rem;border-radius:15px;flex:1;min-width:150px;margin:1rem;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.1);}
+  .counter-card h3{font-size:2rem;color:#007BFF;margin-bottom:0.5rem;}
+  .counter-card p{color:#333;}
+
+  /* CTA Banner */
+  .cta-banner{background:#007BFF;color:#fff;padding:4rem 2rem;text-align:center;border-radius:15px;margin:5rem 0;box-shadow:0 8px 20px rgba(0,0,0,0.2);}
+  .cta-banner button{background:#ff6700;color:#fff;padding:1rem 2rem;border-radius:50px;font-size:1.2rem;cursor:pointer;border:none;transition:0.3s;}
+  .cta-banner button:hover{background:#fff;color:#ff6700;transform:scale(1.05);}
+
+  /* Testimonials */
+  .testimonials{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:3rem;}
+  .testimonial-card{background:#fff;padding:2rem;border-radius:15px;box-shadow:0 8px 20px rgba(0,0,0,0.1);text-align:center;transition:0.3s;}
+  .testimonial-card:hover{transform:scale(1.05);}
+  .testimonial-card p{font-size:1rem;color:#333;margin-bottom:1rem;}
+  .testimonial-card span{color:#007BFF;font-weight:700;}
+
+  /* Footer */
+  footer{background:#007BFF;color:#fff;padding:4rem 2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2rem;}
+  footer h4{color:#ff6700;margin-bottom:1rem;}
+  footer ul{list-style:none;}
+  footer ul li{margin-bottom:0.5rem;}
+  footer .socials{display:flex;gap:1rem;}
+  footer .socials a{color:#fff;font-size:1.2rem;transition:0.3s;}
+  footer .socials a:hover{color:#ff6700;}
+
+  @media(max-width:768px){.hero h1{font-size:2rem}.hero p{font-size:1rem;}}
+</style>
+</head>
+<body>
+
+  <!-- Background Shapes & Emojis -->
+  <div class="bg-shape shape1"></div>
+  <div class="bg-shape shape2"></div>
+  <div class="bg-shape shape3"></div>
+  <div class="emoji emoji1">🚀</div>
+  <div class="emoji emoji2">📈</div>
+  <div class="emoji emoji3">💡</div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">FortuMars</div>
+    <nav>
+      <ul>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#counters">Stats</a></li>
+        <li><a href="#cta">Demo</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>FortuMars CRM Platform</h1>
+    <p>AI-powered CRM & Digital Transformation Solutions to boost your business.</p>
+    <button>Request Demo</button>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" data-aos="fade-up">
+    <h2>Powerful Features</h2>
+    <div class="features">
+      <div class="feature-card" data-aos="zoom-in"><h3>AI Analytics</h3><p>Predict customer behavior and make data-driven decisions.</p></div>
+      <div class="feature-card" data-aos="zoom-in" data-aos-delay="100"><h3>CRM Automation</h3><p>Automate repetitive tasks and increase productivity.</p></div>
+      <div class="feature-card" data-aos="zoom-in" data-aos-delay="200"><h3>Cloud Integration</h3><p>Access your data securely anywhere, anytime.</p></div>
+      <div class="feature-card" data-aos="zoom-in" data-aos-delay="300"><h3>Digital Marketing</h3><p>Boost sales with AI-driven marketing campaigns.</p></div>
+    </div>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section id="dashboard" data-aos="fade-up">
+    <h2>Interactive Dashboard</h2>
+    <div class="dashboard">
+      <div class="chart-card"><canvas id="lineChart"></canvas></div>
+      <div class="chart-card"><canvas id="pieChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- Counters Section -->
+  <section id="counters" data-aos="fade-up">
+    <h2>Our Impact</h2>
+    <div class="counters">
+      <div class="counter-card"><h3 id="projects">0%</h3><p>Projects Completed</p></div>
+      <div class="counter-card"><h3 id="clientsOnline">0%</h3><p>Clients Online</p></div>
+      <div class="counter-card"><h3 id="offices">0%</h3><p>Global Offices</p></div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="cta" data-aos="zoom-in">
+    <h2>Boost Your Business Today!</h2>
+    <p>Sign up for a free demo and experience FortuMars CRM in action.</p>
+    <button>Request Demo</button>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" data-aos="fade-up">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonials">
+      <div class="testimonial-card"><p>"FortuMars transformed our CRM process completely!"</p><span>- Alice W.</span></div>
+      <div class="testimonial-card"><p>"The AI analytics feature is a game-changer for our sales team."</p><span>- Bob K.</span></div>
+      <div class="testimonial-card"><p>"Highly recommend for any business looking to scale digitally."</p><span>- Carol M.</span></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div>
+      <h4>About FortuMars</h4>
+      <ul>
+        <li>Innovative AI & CRM Solutions</li>
+        <li>Global Presence</li>
+        <li>Client-focused Services</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li>Features</li>
+        <li>Dashboard</li>
+        <li>Stats</li>
+        <li>Demo</li>
+        <li>Testimonials</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li>AI/ML Development</li>
+        <li>CRM Solutions</li>
+        <li>Data Analytics</li>
+        <li>Cloud Computing</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact Info</h4>
+      <ul>
+        <li>Email: info@fortumars.com</li>
+        <li>Phone: +91-1234567890</li>
+        <li>Address: 65, 6th St, Coimbatore</li>
+      </ul>
+      <div class="socials">
+        <a href="#">F</a>
+        <a href="#">T</a>
+        <a href="#">I</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration:1200 });
+
+    // Counters animation
+    function animateValue(id,start,end,duration){
+      let obj=document.getElementById(id),range=end-start,current=start,increment=end>start?1:-1,stepTime=Math.abs(Math.floor(duration/range));
+      let timer=setInterval(()=>{current+=increment;obj.textContent=current+"%";if(current==end)clearInterval(timer);},stepTime);
+    }
+    window.addEventListener('load',()=>{
+      animateValue("projects",0,85,2000);
+      animateValue("clientsOnline",0,70,2000);
+      animateValue("offices",0,50,2000);
+    });
+
+    // Charts
+    const pieCtx=document.getElementById('pieChart').getContext('2d');
+    const pieChart=new Chart(pieCtx,{type:'pie',data:{labels:['Projects Completed','Clients Online','Global Offices'],datasets:[{data:[85,70,50],backgroundColor:['#ff6700','#007BFF','#00bcd4']}]},options:{responsive:true}});
+    const lineCtx=document.getElementById('lineChart').getContext('2d');
+    const lineChart=new Chart(lineCtx,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun'],datasets:[{label:'CRM Growth',data:[12,25,18,35,40,50],borderColor:'#007BFF',backgroundColor:'rgba(0,123,255,0.2)',fill:true,tension:0.4}]}});
+  </script>
+</body>
+</html>
